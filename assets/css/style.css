@@ -1,14 +1,9 @@
 body {
 	font-family: 'Roboto', sans-serif; 
 }
-	body.noscroll
-	{
-		position: fixed; 
-		overflow-y: scroll;
-		width: 100%;
-	}
 
 .loading-spinner-overlay {
+	background: rgba(255,255,255,0);
 	height: 100%;
 	width: 100%;
 }
@@ -22,28 +17,40 @@ body {
 	}
 	
 .myNavbar {
-	height: 50px;
+	height: 46.08px;
 	width: 100%;
 	background: #5BB670;
 	border: 0;
+	padding: 0 47.78px;
 	margin-bottom: 20px;
 }
+	.myNavbar .primaryNav {
+		max-width: 1200px;
+		margin: 0 auto;
+	}
 	.myNavbar .logo {
 		height: 100%;
 		float: left;
-		margin: 0 0 0 30px;
-		padding: 13px;
+		padding: 13px 0 13px 0;
 		font-size: 24px;
 		line-height: 24px;
 		color: white;
 	}
+		.myNavbar .logo .logo-left {
+			color: black;
+		}
+		
+.search-bar {
+	text-align: right;
+	margin-bottom: 20px;
+}
 
 .art-thumbnail {
 	border: 1px solid #DDDDDD;
 	border-radius: 6px;
 	margin-bottom: 30px;
 	padding: 10px;
-	transition: background ease-in-out 0.15s;
+	transition: background ease-in-out 0.15s, height 0.5s, width 0.5s;
 }
 	.art-thumbnail img {
 		width: 100%;
@@ -63,20 +70,11 @@ body {
 		cursor: pointer;
 	}
 	
-#modal-overlay {
-    z-index: 999;
-    overflow: auto;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    opacity: 0.90;
-	background: #EEEEEE
-}
 #modal {
     z-index: 1000;
 	background: #FFFFFF;
+	border: 1px solid #DDDDDD;
+	border-radius: 6px;
     position: fixed;
     top: 0;
     left: 0;
@@ -88,9 +86,25 @@ body {
 	padding: 20px;
 }
 
+#modal img {
+	float: left;
+	height: 100%;
+	width: auto;
+	max-width: 40%;
+	margin-right: 20px;
+}
+
 @media (max-width: 767px) {
 	#modal {
 		height: 90%;
 		width: 90%;
+	}
+	
+	.myNavbar {
+		padding-left: 15px;
+	}
+	
+	.search-bar {
+		text-align: left;
 	}
 }

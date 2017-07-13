@@ -1,6 +1,15 @@
 //	Emmett Lam
 //
-//	This file handles the retrieval of data and page event binding
+//	PURPOSE:
+//		This file handles all of the data retrieval and page event binding
+//
+//	DESCRIPTION:
+// 		On-Load:
+//			- Fetch and store all the art IDs from URL
+// 		After ID fetch:
+//			- Use IDs to retrieve first batch of art pieces and display them on screen
+// 		After first batch fetch
+//			- Bind scroll event handler to pull in more pieces when window scrolled to bottom of screen
 
 (function() {
 	// Source URL for IDs
@@ -22,6 +31,16 @@
 	var app = angular.module("myApp", []);
 	app.controller("artDisplayCtrl", function($scope) {
 		$scope.artPieces = [];
+		
+		// Modal event handler
+		$scope.toggleModal = function ($event) {
+			$scope.modalThumbnailUrl = angular.element($event.target).scope().artPiece.thumbnailUrl;
+			$scope.modalTitle = angular.element($event.target).scope().artPiece.title;
+			$scope.modalArtist = angular.element($event.target).scope().artPiece.artist;
+			$scope.modalYear = angular.element($event.target).scope().artPiece.year;
+			$scope.modalCreditLine = angular.element($event.target).scope().artPiece.creditLine;
+			$scope.showModal = !$scope.showModal;
+		};
 	});
 	
 	// On-Load:
@@ -31,7 +50,6 @@
 	// After first batch fetch
 	//		- Bind scroll event handler to pull in more pieces when window scrolled to bottom of screen
 	$(document).ready(function() {
-		
 		// Fetch IDs 
 		$.getJSON(URL, function(data) {        
 			ID_Numbers = data;
@@ -56,7 +74,7 @@
 		// Disable repeated calls
 		isFetching = true;
 		
-		$(".loading-spinner-overlay").fadeIn(500);
+		$(".loading-spinner-overlay img").fadeIn(500);
 		
 		var scope = angular.element($('[ng-controller="artDisplayCtrl"]')).scope();
 		
@@ -68,7 +86,7 @@
 				
 				// Hide spinner and re-enable after last fetch of the batch has been completed
 				if ( (i == batchCount - 1) || (numRetrievedIDs == ID_Numbers.length - 1) ) {
-					$(".loading-spinner-overlay").fadeOut(500);
+					$(".loading-spinner-overlay img").fadeOut(500);
 					
 					// Re-enable fetching
 					isFetching = false;
