@@ -124,6 +124,7 @@ body {
 	}
 
 #modal {
+	overflow: hidden;
 	position: fixed;
 	top: 0;
 	left: 0;
@@ -156,8 +157,8 @@ body {
 
 @media (max-width: 767px) {
 	#modal {
-		height: 90%;
-		width: 90%;
+		max-height: 90%;
+		max-width: 90%;
 	}
 	
 	.myNavbar {

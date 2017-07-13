@@ -79,7 +79,7 @@
 		// Disable repeated calls
 		isFetching = true;
 		
-		$(".loading-spinner-overlay img").fadeIn(500);
+		$(".loading-spinner-overlay img").fadeIn(1000);
 		
 		var scope = angular.element($('[ng-controller="artDisplayCtrl"]')).scope();
 		
@@ -91,7 +91,7 @@
 				
 				// Hide spinner and re-enable after last fetch of the batch has been completed
 				if ( (i == batchCount - 1) || (numRetrievedIDs == ID_Numbers.length - 1) ) {
-					$(".loading-spinner-overlay img").fadeOut(500);
+					$(".loading-spinner-overlay img").fadeOut(1000);
 					
 					// Re-enable fetching
 					isFetching = false;
