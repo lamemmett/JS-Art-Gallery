@@ -41,6 +41,11 @@
 			$scope.modalURL = angular.element($event.target).scope().artPiece.url;
 			$scope.showModal = !$scope.showModal;
 		};
+		
+		// Scroll to top function
+		$scope.scrollTop = function() {
+			$("html, body").animate({ scrollTop: 0 }, 1000);
+		}
 	});
 	
 	// On-Load:

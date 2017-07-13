@@ -1,5 +1,6 @@
 body {
 	font-family: 'Roboto', sans-serif; 
+	overflow-x: hidden;
 }
 	body.no-scroll {
 		overflow: hidden;
@@ -20,7 +21,7 @@ body {
 	}
 	
 .myNavbar {
-	height: 46.08px;
+	height: 50px;
 	width: 100%;
 	background: #5BB670;
 	border: 0;
@@ -42,6 +43,30 @@ body {
 		.myNavbar .logo .logo-left {
 			color: black;
 		}
+		
+#top-button {
+	opacity: 0.5;
+	z-index: 900;
+	background: #EEEEEE;
+	height: 50px;
+	width: 60px;
+	font-size: 50px;
+	font-weight: 1000;
+	padding-top: 10px;
+	line-height: 50px;
+	text-align: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	border-radius: 3px;
+	transition: opacity 0.2s;
+}
+	#top-button:hover {
+		cursor: pointer;
+		opacity: 0.9;
+	}
 		
 .search-bar {
 	text-align: right;
@@ -83,19 +108,33 @@ body {
 	height: 100%;
 	width: 100%;
 }
-#modal {
+
+#modal-wrapper {
     z-index: 1000;
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
+	transition-duration: 600ms;
+}
+	#modal-wrapper.modal-hidden {
+		transform: translate(0, -100%);
+	}
+
+#modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	margin: auto;
 	background: #FFFFFF;
 	border: 1px solid #DDDDDD;
 	border-radius: 6px;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-	max-height: 80%;
-	max-width: 80%;
-	margin: auto;
+	max-height: 70%;
+	max-width: 70%;
 	padding: 20px;
 }
 	#modal img {
@@ -105,13 +144,13 @@ body {
 		max-width: 40%;
 		margin-right: 20px;
 	}
-	#modal-close {
+	#modal #modal-close {
 		font-weight: 900;
 		position: absolute;
 		top: 10px;
 		right: 10px;
 	}
-	#modal-close:hover {
+	#modal #modal-close:hover {
 		cursor: pointer;
 	}
 

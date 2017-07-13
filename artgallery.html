@@ -31,13 +31,15 @@
 			</div>
 		</div>
 		
+		<div id="top-button" ng-click="scrollTop()">^^</div>
+		
 		<!-- Bootstrap columns to save some time... -->
 		<div class="container">
 			<div class="search-bar">Search by Title: <input type="text" ng-model="filters.title"></div>
 			<div class="search-bar">Search by Artist: <input type="text" ng-model="filters.artist"></div>
 			
+			<!-- 3 column display but responsive down to 1 column on small screens -->
 			<div class="row">
-				<!-- 3 column display but responsive down to 1 column on small screens -->
 				<div class="col-xs-12 col-md-4 col-lg-4">
 					<div class="art-thumbnail" ng-if="$index % 3 == 0" ng-repeat="artPiece in artPieces | filter:{artist: filters.artist, title: filters.title}" ng-click="toggleModal($event)">
 						<img ng-src="{{artPiece.thumbnailUrl}}" />
@@ -61,15 +63,19 @@
 				</div>
 			</div>
 			
-			<div id="modal-overlay" ng-show="showModal" ng-click="showModal = false"></div>
+			<!-- Opaque modal overlay -->
+			<div id="modal-overlay" ng-show="showModal" ></div>
+			
 			<!-- Toggle-able modal to display a selected art piece -->
-			<div id="modal" ng-show="showModal" ng-init="showModal = false" >
-				<div id="modal-close" ng-click="showModal = false">X</div>
-				<img ng-src="{{modalThumbnailUrl}}" />
-				<h1>{{modalTitle}}</h1>
-				<h3>{{modalArtist}}; {{modalYear}}</h3>
-				<p>{{modalCreditLine}}</p>
-				<p>Additional Info: <a href="{{modalURL}}">{{modalURL}}</a></p>
+			<div id="modal-wrapper" ng-class="showModal ? '' : 'modal-hidden'" ng-click="showModal = false">
+				<div id="modal" ng-click="$event.stopPropagation()" ng-init="showModal = false" >
+					<div id="modal-close" ng-click="showModal = false">X</div>
+					<img ng-src="{{modalThumbnailUrl}}" />
+					<h1>{{modalTitle}}</h1>
+					<h3>{{modalArtist}}; {{modalYear}}</h3>
+					<p>{{modalCreditLine}}</p>
+					<p>Additional Info: <a href="{{modalURL}}">{{modalURL}}</a></p>
+				</div>
 			</div>
 		</div>
 		
