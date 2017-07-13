@@ -18,7 +18,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	
-	<body ng-app="myApp" ng-controller="artDisplayCtrl">
+	<body ng-app="myApp" ng-controller="artDisplayCtrl" ng-class="showModal ? 'no-scroll' : ''">
 		<div class="loading-spinner-overlay">
 			<img src="assets/images/spinner.svg">
 		</div>
@@ -33,26 +33,27 @@
 		
 		<!-- Bootstrap columns to save some time... -->
 		<div class="container">
-			<div class="search-bar">Search by Artist: <input type="text" ng-model="filters.search"></div>
+			<div class="search-bar">Search by Title: <input type="text" ng-model="filters.title"></div>
+			<div class="search-bar">Search by Artist: <input type="text" ng-model="filters.artist"></div>
 			
 			<div class="row">
 				<!-- 3 column display but responsive down to 1 column on small screens -->
 				<div class="col-xs-12 col-md-4 col-lg-4">
-					<div class="art-thumbnail" ng-if="$index % 3 == 0" ng-repeat="artPiece in artPieces | filter:{artist: filters.search}" ng-click="toggleModal($event)">
+					<div class="art-thumbnail" ng-if="$index % 3 == 0" ng-repeat="artPiece in artPieces | filter:{artist: filters.artist, title: filters.title}" ng-click="toggleModal($event)">
 						<img ng-src="{{artPiece.thumbnailUrl}}" />
 						<p class="title">{{ artPiece.title }}</p>
 						<p class="artist">{{ artPiece.artist }}; {{ artPiece.year }}</p>
 					</div>
 				</div>
 				<div class="col-xs-12 col-md-4 col-lg-4">
-					<div class="art-thumbnail" ng-if="$index % 3 == 1" ng-repeat="artPiece in artPieces | filter:{artist: filters.search}" ng-click="toggleModal($event)">
+					<div class="art-thumbnail" ng-if="$index % 3 == 1" ng-repeat="artPiece in artPieces | filter:{artist: filters.artist, title: filters.title}" ng-click="toggleModal($event)">
 						<img ng-src="{{artPiece.thumbnailUrl}}" />
 						<p class="title">{{ artPiece.title }}</p>
 						<p class="artist">{{ artPiece.artist }}; {{ artPiece.year }}</p>
 					</div>
 				</div>
 				<div class="col-xs-12 col-md-4 col-lg-4">
-					<div class="art-thumbnail" ng-if="$index % 3 == 2" ng-repeat="artPiece in artPieces | filter:{artist: filters.search}" ng-click="toggleModal($event)">
+					<div class="art-thumbnail" ng-if="$index % 3 == 2" ng-repeat="artPiece in artPieces | filter:{artist: filters.artist, title: filters.title}" ng-click="toggleModal($event)">
 						<img ng-src="{{artPiece.thumbnailUrl}}" />
 						<p class="title">{{ artPiece.title }}</p>
 						<p class="artist">{{ artPiece.artist }}; {{ artPiece.year }}</p>
@@ -60,12 +61,15 @@
 				</div>
 			</div>
 			
+			<div id="modal-overlay" ng-show="showModal" ng-click="showModal = false"></div>
 			<!-- Toggle-able modal to display a selected art piece -->
-			<div id="modal" ng-show="showModal" ng-init="showModal = false" ng-click="showModal = false">
+			<div id="modal" ng-show="showModal" ng-init="showModal = false" >
+				<div id="modal-close" ng-click="showModal = false">X</div>
 				<img ng-src="{{modalThumbnailUrl}}" />
 				<h1>{{modalTitle}}</h1>
 				<h3>{{modalArtist}}; {{modalYear}}</h3>
 				<p>{{modalCreditLine}}</p>
+				<p>Additional Info: <a href="{{modalURL}}">{{modalURL}}</a></p>
 			</div>
 		</div>
 		

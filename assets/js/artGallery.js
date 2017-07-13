@@ -27,7 +27,6 @@
 	// Tracking flag
 	var isFetching = false;
 	
-	// Make angular happy
 	var app = angular.module("myApp", []);
 	app.controller("artDisplayCtrl", function($scope) {
 		$scope.artPieces = [];
@@ -39,6 +38,7 @@
 			$scope.modalArtist = angular.element($event.target).scope().artPiece.artist;
 			$scope.modalYear = angular.element($event.target).scope().artPiece.year;
 			$scope.modalCreditLine = angular.element($event.target).scope().artPiece.creditLine;
+			$scope.modalURL = angular.element($event.target).scope().artPiece.url;
 			$scope.showModal = !$scope.showModal;
 		};
 	});
