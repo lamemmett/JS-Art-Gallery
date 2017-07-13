@@ -117,10 +117,11 @@ body {
 	right: 0;
 	bottom: 0;
 	margin: auto;
+	transform: translate(0, -100%);
 	transition-duration: 600ms;
 }
-	#modal-wrapper.modal-hidden {
-		transform: translate(0, -100%);
+	#modal-wrapper.modal-show {
+		transform: translate(0, 0);
 	}
 
 #modal {

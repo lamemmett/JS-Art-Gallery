@@ -64,11 +64,11 @@
 			</div>
 			
 			<!-- Opaque modal overlay -->
-			<div id="modal-overlay" ng-show="showModal" ></div>
+			<div id="modal-overlay" ng-show="showModal" ng-init="showModal = false"></div>
 			
 			<!-- Toggle-able modal to display a selected art piece -->
-			<div id="modal-wrapper" ng-class="showModal ? '' : 'modal-hidden'" ng-click="showModal = false">
-				<div id="modal" ng-click="$event.stopPropagation()" ng-init="showModal = false" >
+			<div id="modal-wrapper" ng-class="showModal ? 'modal-show' : ''" ng-click="showModal = false">
+				<div id="modal" ng-click="$event.stopPropagation()" >
 					<div id="modal-close" ng-click="showModal = false">X</div>
 					<img ng-src="{{modalThumbnailUrl}}" />
 					<h1>{{modalTitle}}</h1>
