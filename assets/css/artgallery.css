@@ -157,12 +157,17 @@ body {
 	}
 
 @media (max-width: 767px) {
-	#modal {
-		max-height: 90%;
-		max-width: 90%;
-	}
 	
 	.myNavbar {
 		padding-left: 15px;
 	}
+	
+	#modal {
+		max-height: 50%;
+		max-width: 90%;
+	}
+		#modal img {
+			height: 50%;
+			max-width: 40%;
+		}
 }
